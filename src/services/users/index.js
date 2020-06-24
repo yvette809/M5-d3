@@ -2,6 +2,7 @@ const express = require("express")
 const fs = require("fs")
 const path = require("path")
 const uniqid = require("uniqid")
+const{check,validationResult}= require("express-validator")
 
 const router = express.Router()
 
@@ -31,7 +32,7 @@ router.get("/", (req, res) => {
   }
 })
 
-router.post("/", (req, res) => {
+router.post("/", [check("name").isLength({min:4}).withMessage("insert an name please!")],(req, res) => {
   const usersDB = readFile("users.json")
   const newUser = {
     ...req.body,

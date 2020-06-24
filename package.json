@@ -18,7 +18,8 @@
   "homepage": "https://github.com/yvette809/M4-d3#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-validator": "^6.6.0"
+    "express-validator": "^6.6.0",
+    "uniqid": "^5.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
