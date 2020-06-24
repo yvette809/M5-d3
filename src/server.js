@@ -1,17 +1,25 @@
 const express = require("express")
 const usersRouter = require("./services/users")
 const moviesRouter = require("./services/movies")
+const { unauthorizedHandler } = require("./services/users/errorHandling")
+const{}
 
-const server = express()
+const app = express()
 
 const port = process.env.PORT
 
-server.use(express.json()) // Built in middleware
+app.use(express.json()) // Built in middleware
 
 // ROUTES
-server.use("/users", usersRouter)
-server.use("/movies", moviesRouter)
+app.use("/users", usersRouter)
+app.use("/movies", moviesRouter)
 
-server.listen(port, () => {
+//ERROR HANDLERS
+app.use(notFoundHandler)
+app.use(unauthorizedHandler)
+app.use(forbiddenHandler)
+app.use(catchHandler)
+
+app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
 })
